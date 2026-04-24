@@ -13,6 +13,8 @@ RUN uv sync --frozen --no-install-project --no-dev
 
 COPY . .
 
+RUN uv run python -c "from transformers import pipeline; pipeline('text-classification', model='mehddii/roberta-aigt-finetuning-v4')"
+
 EXPOSE 8080
 
 CMD ["uv", "run", "--no-sync", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
